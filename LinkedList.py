@@ -55,6 +55,46 @@ class LinkedList:
                 last = last.next
             last.next = new_node
 
+    def deleteNode(self,key):
+        temp = self.head
+        if(temp is not None):
+            if(temp.data == key):
+                self.head = temp.next
+                temp = None
+                return
+        while(temp is not None):
+            if temp.data == key:
+                break
+            prev = temp
+            temp = temp.next
+
+        if(temp==None):
+            return
+
+        prev.next = temp.next
+
+        temp = None
+
+    def deleteNodeatPosition(self,position):
+        if self.head is None:
+            return
+        if position == 0:
+            self.head = self.head.next
+            return self.head
+        index = 0
+        current = self.head
+        prev = self.head
+        temp = self.head
+        while current is not None:
+            if index == position:
+                temp = current.next
+                break
+            prev = current
+            current = current.next
+            index += 1
+        prev.next = temp
+        return prev
+
 # Code execution starts here
 if __name__=='__main__':
  
@@ -74,5 +114,10 @@ if __name__=='__main__':
     llist.push(7)
     
     llist.insertAfter(llist.head.next.next, 8)
-
+    llist.printList()
+    llist.deleteNode(8) 
+    print("------")
+    llist.printList()
+    llist.deleteNodeatPosition(0)
+    print("------")
     llist.printList()
