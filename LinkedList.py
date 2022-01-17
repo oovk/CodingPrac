@@ -1,4 +1,7 @@
 #Linked List: The elements are not stored continously. They are connected via pointers. It has dynamic size and easy insertion and deletion.
+#Time complexity of insert,delete at any position - O(1)
+# Time complexity of accessing ith element, traverse all the elements - O(n) 
+
 
 class Node:
  
