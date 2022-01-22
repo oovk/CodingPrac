@@ -1,30 +1,24 @@
-""" Given a binary tree, delete a node from it by making sure that tree shrinks from the 
-bottom (i.e. the deleted node is replaced by the bottom-most and rightmost node). 
-Here we do not have any order among elements, so we replace with the last element.
- """
-
-from logging import root
-from tempfile import TemporaryDirectory
-
-
-class Node():
-    def __init__(self,key):
+# class to create a node with data, left child and right child.
+class Node:
+    def __init__(self,data):
+        self.data = data
         self.left = None
-        self.right  = None
-        self.val = key
-    
+        self.right = None
+  
+# Inorder traversal of a binary tree
 def inorder(temp):
-    if not temp:
+    if(not temp):
         return
     inorder(temp.left)
-    print(temp.val,end=" ")
+    print(temp.data, end = " ")
     inorder(temp.right)
-
+  
+# function to delete the given deepest node (d_node) in binary tree
 def deleteDeepest(root,d_node):
     q = []
     q.append(root)
     while(len(q)):
-        temp = q.pop()
+        temp = q.pop(0)
         if temp is d_node:
             temp = None
             return
@@ -32,42 +26,44 @@ def deleteDeepest(root,d_node):
             if temp.right is d_node:
                 temp.right = None
                 return
+            else:
+                q.append(temp.right)
         if temp.left:
             if temp.left is d_node:
                 temp.left = None
                 return
             else:
                 q.append(temp.left)
-
-def deletion(root,key):
-    if root == None:
+  
+# function to delete element in binary tree
+def deletion(root, key):
+    if root == None :
         return None
     if root.left == None and root.right == None:
-        if root.key == key:
+        if root.key == key :
             return None
-        else:
+        else :
             return root
     key_node = None
     q = []
     q.append(root)
     temp = None
     while(len(q)):
-        temp = q.pop()
-        if temp.val == key:
+        temp = q.pop(0)
+        if temp.data == key:
             key_node = temp
         if temp.left:
             q.append(temp.left)
         if temp.right:
             q.append(temp.right)
-
-    if key_node:
-        x = temp.val
+    if key_node :
+        x = temp.data
         deleteDeepest(root,temp)
-        key_node = x
+        key_node.data = x
     return root
-
-
-if __name__ == '__main__':
+  
+# Driver code
+if __name__=='__main__':
     root = Node(10)
     root.left = Node(11)
     root.left.left = Node(7)
