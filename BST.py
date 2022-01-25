@@ -70,6 +70,14 @@ def inorder(root):
         print(root.key,end=" ")
         inorder(root.right)
 
+def minValue(node):
+    current = node
+
+    while(current.left is not None):
+        current = current.left
+
+    return current.key
+
 root = None
 root = insert(root, 50)
 root = insert(root, 30)
@@ -84,3 +92,4 @@ inorder(root)
 root = deleteNode(root, 20)
 print ("Inorder traversal of the modified tree")
 inorder(root)
+print(minValue(root))
