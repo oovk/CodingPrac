@@ -34,7 +34,7 @@ def split(linkedlist):
 
 
 def merge(left, right):
-    merged = Linked_List
+    merged = Linked_List()
     merged.add(0)
     current = merged.head
     right_head = right.head
@@ -50,14 +50,15 @@ def merge(left, right):
         else:
             left_data = left_head.data
             right_data = right_head.data
-        if left_data < right_data:
-            current.next_node = left_head
-            left_head = left_head.next_node
-        else:
-            current.nect_node = right_head
-            right_head = right_head.next_node    
+            if left_data < right_data:
+                current.next_node = left_head
+                left_head = left_head.next_node
+            else:
+                current.next_node = right_head
+                right_head = right_head.next_node    
     
-    current = current.next_node
+        current = current.next_node
+    
     head = merged.head.next_node
     merged.head = head
 
